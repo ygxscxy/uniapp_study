@@ -1,1 +1,1 @@
-<view> home </view>
+<view class=""> home name:{{a}}</view>

@@ -1,0 +1,1 @@
+<view> user-info <button type="primary" bindtap="{{a}}">传递数据</button></view>
