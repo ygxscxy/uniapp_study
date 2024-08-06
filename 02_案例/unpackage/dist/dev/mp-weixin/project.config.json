@@ -8,7 +8,7 @@
 		"urlCheck": false,
 		"es6": true,
 		"postcss": false,
-		"minified": true,
+		"minified": false,
 		"newFeature": true,
 		"bigPackageSizeSupport": true,
 		"babelSetting": {
@@ -19,26 +19,9 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "3.4.9",
-	"appid": "wx5d54681bc95d0874",
-	"projectname": "01_test",
-	"condition": {
-		"search": {
-			"current": -1,
-			"list": []
-		},
-		"conversation": {
-			"current": -1,
-			"list": []
-		},
-		"game": {
-			"current": -1,
-			"list": []
-		},
-		"miniprogram": {
-			"current": -1,
-			"list": []
-		}
-	},
+	"appid": "touristappid",
+	"projectname": "02_案例",
+	"condition": {},
 	"editorSetting": {
 		"tabIndent": "tab",
 		"tabSize": 2

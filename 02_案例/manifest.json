@@ -1,6 +1,6 @@
 {
-    "name" : "01_test",
-    "appid" : "__UNI__BCD4FDE",
+    "name" : "02_案例",
+    "appid" : "",
     "description" : "",
     "versionName" : "1.0.0",
     "versionCode" : "100",
@@ -50,10 +50,9 @@
     "quickapp" : {},
     /* 小程序特有相关 */
     "mp-weixin" : {
-        "appid" : "wx5d54681bc95d0874",
+        "appid" : "",
         "setting" : {
-            "urlCheck" : false,
-            "minified" : true
+            "urlCheck" : false
         },
         "usingComponents" : true
     },

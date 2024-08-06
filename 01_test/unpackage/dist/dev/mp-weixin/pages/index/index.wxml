@@ -1,1 +1,1 @@
-<user-info class="r" bindgetData="{{b}}" u-r="refSonComp" u-i="deb4a5ae-0" bind:__l="__l"/><navigator url="/pages/home/home?name=zs&age=12" open-type="reLaunch">home</navigator><view class="content"><view wx:for="{{c}}" wx:for-item="item" wx:key="b" class="item"><text>{{item.a}}</text></view></view>
+<user-info class="r" bindgetData="{{b}}" u-r="refSonComp" u-i="deb4a5ae-0" bind:__l="__l"/><navigator url="/pages/home/home?name=zs&age=12" open-type="reLaunch">home</navigator><view class="text">{{c}}</view>

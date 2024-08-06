@@ -2,50 +2,35 @@
 	<UserInfo @get-data="getData" ref="refSonComp" />
 	<!-- open-type="reLaunch" 卸载当前页面然后跳转 -->
 	<navigator url="/pages/home/home?name=zs&age=12" open-type="reLaunch">home</navigator>
-	<view class="content">
-		<view class="item" v-for="item in 100" :key="item">
-			<text>{{item}}</text>
-		</view>
-		
+	<view class="text">
+		{{count}}
 	</view>
 </template>
 
 <script setup>
-	import {onMounted, ref} from "vue"
-	import {onLoad,onShow,onUnload,onPageScroll} from "@dcloudio/uni-app"
 	
-	
-	onLoad(()=>{
-		console.log("onLoad");
-	})
-	
-	onShow(()=>{
-		console.log("onShow");
-	})
-	
-	// 只有通过navigator open-type=reLaunch 进行跳转才会触发
-	onUnload(()=>{
-		console.log("onUnload");
-	})
-	
-	
-	const refSonComp = ref()
-	
-	onMounted(()=>{
-		console.log(refSonComp.value);
-	})
-	
-	
-	// onPageScroll((e)=>{
-	// 	console.log("onPageScroll",e);
-	// })
+	uni.showActionSheet({
 		
+		itemList: ['A', 'B', 'C'],
+		success: function (res) {
+			console.log(res);
+			console.log('选中了第' + (res.tapIndex + 1) + '个按钮');
+		},
+		fail: function (res) {
+			console.log(res.errMsg);
+		}
+	});
+	uni.showNavigationBarLoading()
+	uni.setNavigationBarColor({
+	    frontColor: '#ffffff',
+	    backgroundColor: '#ff0000',
+	    animation: {
+	        duration: 400,
+	        timingFunc: 'easeIn'
+	    }
+	})
 	
-	const getData = (value)=>{
-		console.log(value.value);
-	}
-	
-	
+		
 </script>
 
 <style lang="less">

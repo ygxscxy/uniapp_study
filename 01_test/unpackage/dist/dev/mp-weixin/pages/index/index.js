@@ -11,37 +11,32 @@ if (!Math) {
 const _sfc_main = {
   __name: "index",
   setup(__props) {
-    common_vendor.onLoad(() => {
-      console.log("onLoad");
+    common_vendor.index.showActionSheet({
+      itemList: ["A", "B", "C"],
+      success: function(res) {
+        console.log(res);
+        console.log("选中了第" + (res.tapIndex + 1) + "个按钮");
+      },
+      fail: function(res) {
+        console.log(res.errMsg);
+      }
     });
-    common_vendor.onShow(() => {
-      console.log("onShow");
+    common_vendor.index.showNavigationBarLoading();
+    common_vendor.index.setNavigationBarColor({
+      frontColor: "#ffffff",
+      backgroundColor: "#ff0000",
+      animation: {
+        duration: 400,
+        timingFunc: "easeIn"
+      }
     });
-    common_vendor.onUnload(() => {
-      console.log("onUnload");
-    });
-    const refSonComp = common_vendor.ref();
-    common_vendor.onMounted(() => {
-      console.log(refSonComp.value);
-    });
-    const getData = (value) => {
-      console.log(value.value);
-    };
     return (_ctx, _cache) => {
       return {
-        a: common_vendor.sr(refSonComp, "deb4a5ae-0", {
-          "k": "refSonComp"
-        }),
-        b: common_vendor.o(getData),
-        c: common_vendor.f(100, (item, k0, i0) => {
-          return {
-            a: common_vendor.t(item),
-            b: item
-          };
-        })
+        a: common_vendor.sr("refSonComp", "deb4a5ae-0"),
+        b: common_vendor.o(_ctx.getData),
+        c: common_vendor.t(_ctx.count)
       };
     };
   }
 };
-_sfc_main.__runtimeHooks = 1;
 wx.createPage(_sfc_main);

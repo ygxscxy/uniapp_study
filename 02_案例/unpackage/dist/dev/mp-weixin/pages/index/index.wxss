@@ -1,0 +1,40 @@
+.container {
+  width: 80vw;
+  margin: 0 auto;
+  margin-bottom: env(safe-area-inset-bottom);
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.container .item {
+  background-color: #fff;
+  box-shadow: 0 10rpx 40rpx rgba(0, 0, 0, 0.08);
+  margin: 20rpx 0;
+}
+.container .item .bottom {
+  padding: 20rpx;
+}
+.container .item .bottom .author {
+  margin: 10rpx 0;
+  right: 10rpx;
+  text-align: right;
+}
+.container .fixed-box {
+  position: fixed;
+  bottom: 80rpx;
+  right: 30rpx;
+  padding: 20rpx;
+  color: #fff;
+  z-index: 10;
+}
+.container .fixed-box .back,
+.container .fixed-box .refresh {
+  background-color: #aaa;
+  padding: 20rpx;
+  border-radius: 20rpx;
+}
+.container .fixed-box .back {
+  margin-top: 10rpx;
+}
