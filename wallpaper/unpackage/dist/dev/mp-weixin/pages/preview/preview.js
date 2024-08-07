@@ -5,14 +5,16 @@ const utils_system = require("../../utils/system.js");
 if (!Array) {
   const _easycom_uni_icons2 = common_vendor.resolveComponent("uni-icons");
   const _easycom_uni_dateformat2 = common_vendor.resolveComponent("uni-dateformat");
-  const _component_uni_rate = common_vendor.resolveComponent("uni-rate");
-  const _component_uni_popup = common_vendor.resolveComponent("uni-popup");
-  (_easycom_uni_icons2 + _easycom_uni_dateformat2 + _component_uni_rate + _component_uni_popup)();
+  const _easycom_uni_rate2 = common_vendor.resolveComponent("uni-rate");
+  const _easycom_uni_popup2 = common_vendor.resolveComponent("uni-popup");
+  (_easycom_uni_icons2 + _easycom_uni_dateformat2 + _easycom_uni_rate2 + _easycom_uni_popup2)();
 }
 const _easycom_uni_icons = () => "../../uni_modules/uni-icons/components/uni-icons/uni-icons.js";
 const _easycom_uni_dateformat = () => "../../uni_modules/uni-dateformat/components/uni-dateformat/uni-dateformat.js";
+const _easycom_uni_rate = () => "../../uni_modules/uni-rate/components/uni-rate/uni-rate.js";
+const _easycom_uni_popup = () => "../../uni_modules/uni-popup/components/uni-popup/uni-popup.js";
 if (!Math) {
-  (_easycom_uni_icons + _easycom_uni_dateformat)();
+  (_easycom_uni_icons + _easycom_uni_dateformat + _easycom_uni_rate + _easycom_uni_popup)();
 }
 const _sfc_main = {
   __name: "preview",
@@ -21,6 +23,7 @@ const _sfc_main = {
     const infoPopup = common_vendor.ref(null);
     const scorePopup = common_vendor.ref(null);
     const userScore = common_vendor.ref(0);
+    const isConfirmScore = common_vendor.ref(false);
     const clickInfo = () => {
       infoPopup.value.open();
     };
@@ -34,7 +37,8 @@ const _sfc_main = {
       scorePopup.value.close();
     };
     const submitScore = () => {
-      console.log("评分了");
+      scorePopup.value.close();
+      isConfirmScore.value = true;
     };
     const maskChange = () => {
       maskState.value = !maskState.value;
@@ -73,53 +77,61 @@ const _sfc_main = {
         k: common_vendor.o(clickInfo),
         l: common_vendor.p({
           type: "star",
+          color: isConfirmScore.value ? "red" : "",
           size: "28"
         }),
-        m: common_vendor.o(clickScore),
-        n: common_vendor.p({
+        m: common_vendor.t(userScore.value),
+        n: common_vendor.o(clickScore),
+        o: common_vendor.p({
           type: "download",
           size: "23"
         })
       } : {}, {
-        o: common_vendor.p({
+        p: common_vendor.p({
           type: "closeempty",
           size: "18",
           color: "#999"
         }),
-        p: common_vendor.o(clickInfoClose),
-        q: common_vendor.p({
+        q: common_vendor.o(clickInfoClose),
+        r: common_vendor.p({
           readonly: true,
           touchable: true,
           value: "3.5",
           size: "16"
         }),
-        r: common_vendor.f(3, (item, k0, i0) => {
+        s: common_vendor.f(3, (item, k0, i0) => {
           return {};
         }),
-        s: common_vendor.sr(infoPopup, "2dad6c07-6", {
+        t: common_vendor.sr(infoPopup, "2dad6c07-6", {
           "k": "infoPopup"
         }),
-        t: common_vendor.p({
+        v: common_vendor.p({
           type: "bottom"
         }),
-        v: common_vendor.p({
+        w: common_vendor.p({
           type: "closeempty",
           size: "18",
           color: "#999"
         }),
-        w: common_vendor.o(clickScoreClose),
-        x: common_vendor.o(($event) => userScore.value = $event),
-        y: common_vendor.p({
+        x: common_vendor.o(clickScoreClose),
+        y: !isConfirmScore.value
+      }, !isConfirmScore.value ? {
+        z: common_vendor.o(($event) => userScore.value = $event),
+        A: common_vendor.p({
           allowHalf: true,
           modelValue: userScore.value
         }),
-        z: common_vendor.t(userScore.value),
-        A: common_vendor.o(submitScore),
-        B: !userScore.value,
-        C: common_vendor.sr(scorePopup, "2dad6c07-9", {
+        B: common_vendor.t(userScore.value)
+      } : {}, {
+        C: !isConfirmScore.value
+      }, !isConfirmScore.value ? {
+        D: common_vendor.o(submitScore),
+        E: !userScore.value
+      } : {}, {
+        F: common_vendor.sr(scorePopup, "2dad6c07-9", {
           "k": "scorePopup"
         }),
-        D: common_vendor.p({
+        G: common_vendor.p({
           ["is-mask-click"]: false
         })
       });

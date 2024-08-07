@@ -1,5 +1,6 @@
 <template>
 	<view class="home-layout">
+		<custom-nav-bar />
 		<view class="banner">
 			<swiper :indicator-dots="true" :autoplay="true"
 				:interval="3000" :duration="1000" >

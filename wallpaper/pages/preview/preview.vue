@@ -25,8 +25,8 @@
 				</view>
 				
 				<view class="box" @click="clickScore">
-					<uni-icons type="star" size="28"></uni-icons>
-					<view class="text">5分</view>
+					<uni-icons type="star" :color="isConfirmScore?'red':''" size="28"></uni-icons>
+					<view class="text">{{userScore}}分</view>
 				</view>
 				
 				<view class="box">
@@ -42,14 +42,14 @@
 					<view></view>
 					<view class="title">壁纸信息</view>
 					<view class="close" @click="clickInfoClose">
-						<uni-icons type="closeempty" size="18"													color="#999"></uni-icons>
+						<uni-icons type="closeempty" size="18" color="#999"></uni-icons>
 					</view>
 				</view>
 				<scroll-view scroll-y>
 					<view class="content">
 						<view class="row">
 							<view class="label">壁纸ID：</view>
-							<text selectable class="value">12312312adfa</text>
+							<text user-select	selectable class="value">12312312adfa</text>
 						</view>
 						
 						<view class="row">
@@ -84,7 +84,7 @@
 							</view>
 						</view>	
 											
-						<view class="copyright">声明：本图片来用户投稿，非商业使用，用于免费学习交流，如侵犯了您的权益，您可以拷贝壁纸ID举报至平台，邮箱513894357@qq.com，管理将删除侵权壁纸，维护您的权益。
+						<view class="copyright">声明：本图片来用户投稿，非商业使用，用于免费学习交流，如侵犯了您的权益，您可以拷贝壁纸ID举报至平台，邮箱dbbemail@163.com，管理将删除侵权壁纸，维护您的权益。
 						
 						</view>
 					</view>
@@ -99,16 +99,21 @@
 					<view></view>
 					<view class="title">壁纸评分</view>
 					<view class="close" @click="clickScoreClose">
-						<uni-icons type="closeempty" size="18"													color="#999"></uni-icons>
+						<uni-icons type="closeempty" size="18" color="#999"></uni-icons>
 					</view>
 				</view>
 				
 				<view class="content">
-					<uni-rate v-model="userScore" allowHalf/>
-					<text class="text">{{userScore}}分</text>
+					<template v-if="!isConfirmScore">
+						<uni-rate v-model="userScore" allowHalf/>
+						<text class="text">{{userScore}}分</text>
+					</template>
+					<template v-else>
+						<text>已经评分过了~</text>
+					</template>
 				</view>
 				
-				<view class="footer">
+				<view class="footer" v-if="!isConfirmScore">
 					<button @click="submitScore" :disabled="!userScore" type="default" size="mini" plain >确认评分</button>
 				</view>
 			</view>
@@ -120,12 +125,13 @@
 <script setup>
 import { ref } from 'vue';
 import {getStatusBarHeight} from "@/utils/system.js"
+
 const maskState =ref(true);
 const infoPopup = ref(null);
 const scorePopup = ref(null);
 const userScore =ref(0)
 
-
+const isConfirmScore = ref(false)
 
 
 //点击info弹窗
@@ -142,6 +148,7 @@ const clickInfoClose = ()=>{
 const clickScore=()=>{
 	scorePopup.value.open();
 }
+
 //关闭评分框
 const clickScoreClose=()=>{
 	scorePopup.value.close();
@@ -149,7 +156,9 @@ const clickScoreClose=()=>{
 
 //确认评分
 const submitScore=()=>{
-	console.log("评分了");
+	
+	scorePopup.value.close();
+	isConfirmScore.value = true
 }
 
 
