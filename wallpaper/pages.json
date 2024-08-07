@@ -3,7 +3,9 @@
 		{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "咸虾米"
+				"navigationBarTitleText": "咸虾米",
+				// 自定义top bar
+				"navigationStyle": "custom"
 			}
 		},
 		{
@@ -18,6 +20,20 @@
 			"style" : 
 			{
 				"navigationBarTitleText" : "我的"
+			}
+		},
+		{
+			"path" : "pages/classiylist/classiylist",
+			"style" : 
+			{
+				"navigationBarTitleText" : ""
+			}
+		},
+		{
+			"path" : "pages/preview/preview",
+			"style" : 
+			{
+				"navigationBarTitleText" : ""
 			}
 		}
 	],

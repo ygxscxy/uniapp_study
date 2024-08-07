@@ -14,7 +14,5 @@
 
 <style lang="scss">
 	@import "uview-plus/index.scss";
-	/*每个页面公共css */
-	@import "@/common/style/style.scss";
-	@import "@/common/style/base-style.scss"
+
 </style>

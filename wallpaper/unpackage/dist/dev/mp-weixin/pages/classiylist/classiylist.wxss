@@ -6,10 +6,10 @@
  *
  */
 /*每个页面公共css */
-view.data-v-43a5d97b, swiper.data-v-43a5d97b, swiper-item.data-v-43a5d97b, .banner.data-v-43a5d97b {
+view.data-v-d4bdad1a, swiper.data-v-d4bdad1a, swiper-item.data-v-d4bdad1a, .banner.data-v-d4bdad1a {
   box-sizing: border-box;
 }
-.pageBg.data-v-43a5d97b {
+.pageBg.data-v-d4bdad1a {
   background: linear-gradient(to bottom, transparent, #fff 400rpx), linear-gradient(to right, #beecd8 20%, #F4E2D8);
   min-height: 80vh;
 }
@@ -31,11 +31,17 @@ view.data-v-43a5d97b, swiper.data-v-43a5d97b, swiper-item.data-v-43a5d97b, .bann
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.title.data-v-43a5d97b {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.classlist .content.data-v-d4bdad1a {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5rpx;
+  padding: 5rpx;
 }
-.title .left.data-v-43a5d97b {
-  font-size: 40rpx;
+.classlist .content .item.data-v-d4bdad1a {
+  height: 440rpx;
+}
+.classlist .content .item image.data-v-d4bdad1a {
+  width: 100%;
+  height: 100%;
+  display: block;
 }

@@ -9,11 +9,9 @@
 		</view>
 		
 		
-		
-		
 		<view class="section">
 			<view class="list">
-				<navigator url="/pages/classlist/classlist" class="row">
+				<navigator url="/pages/classiylist/classiylist" class="row">
 					<view class="left">
 						<uni-icons type="download-filled" size="20" ></uni-icons>
 						<view class="text">我的下载</view>
@@ -24,7 +22,7 @@
 					</view>
 				</navigator>
 				
-				<navigator  url="/pages/classlist/classlist" class="row">
+				<navigator  url="/pages/classiylist/classiylist" class="row">
 					<view class="left">
 						<uni-icons type="star-filled" size="20"></uni-icons>
 						<view class="text">我的评分</view>

@@ -1,1 +1,1 @@
-<view class="classify-layout data-v-6bcfa975"><view class="content data-v-6bcfa975"><theme-item wx:for="{{a}}" wx:for-item="item" wx:key="a" class="data-v-6bcfa975" u-i="{{item.b}}" bind:__l="__l"></theme-item></view></view>
+<view class="classify-layout pageBg data-v-6bcfa975"><view class="content data-v-6bcfa975"><theme-item wx:for="{{a}}" wx:for-item="item" wx:key="a" class="data-v-6bcfa975" u-i="{{item.b}}" bind:__l="__l"></theme-item></view></view>

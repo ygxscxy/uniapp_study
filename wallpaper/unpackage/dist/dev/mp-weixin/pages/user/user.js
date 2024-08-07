@@ -14,9 +14,8 @@ const _sfc_main = {
   setup(__props) {
     return (_ctx, _cache) => {
       return {
-        a: common_assets._imports_0$1,
+        a: common_assets._imports_0$2,
         b: common_vendor.p({
-          color: "#28b389",
           type: "download-filled",
           size: "20"
         }),
@@ -26,7 +25,6 @@ const _sfc_main = {
           color: "#aaa"
         }),
         d: common_vendor.p({
-          color: "#28b389",
           type: "star-filled",
           size: "20"
         }),
@@ -36,7 +34,6 @@ const _sfc_main = {
           color: "#aaa"
         }),
         f: common_vendor.p({
-          color: "#28b389",
           type: "chatboxes-filled",
           size: "20"
         }),

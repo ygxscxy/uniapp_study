@@ -1,6 +1,6 @@
 <template>
 	<view class="theme-item" v-if="!isshowLast">
-		<navigator url="">
+		<navigator :url="`/pages/classiylist/classiylist?currentIndex=${currentIndex}`">
 			<view class="top">
 				aaaa
 			</view>
@@ -14,7 +14,7 @@
 	</view>
 
  <view class="theme-item" v-if="isshowLast">
-	 <navigator url="">
+	 <navigator  open-type="reLaunch" url="/pages/classify/classify">
 	 	<view class="content mask-box">
 			<view class="mask"></view>
 			<view class="text-icon">
@@ -34,7 +34,8 @@
 		isshowLast: {
 			type:Boolean,
 			default: false
-		}
+		},
+		currentIndex:Number
 	})
 </script>
 

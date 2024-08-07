@@ -1,0 +1,6 @@
+.content.data-v-6bcfa975 {
+  margin-top: 30rpx;
+  display: grid;
+  gap: 15rpx;
+  grid-template-columns: repeat(3, 1fr);
+}

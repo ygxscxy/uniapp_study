@@ -15,23 +15,25 @@ const _sfc_main = {
     isshowLast: {
       type: Boolean,
       default: false
-    }
+    },
+    currentIndex: Number
   },
   setup(__props) {
     return (_ctx, _cache) => {
       return common_vendor.e({
         a: !__props.isshowLast
       }, !__props.isshowLast ? {
-        b: common_assets._imports_0$2
+        b: common_assets._imports_0$4,
+        c: `/pages/classiylist/classiylist?currentIndex=${__props.currentIndex}`
       } : {}, {
-        c: __props.isshowLast
+        d: __props.isshowLast
       }, __props.isshowLast ? {
-        d: common_vendor.p({
+        e: common_vendor.p({
           type: "more-filled",
           size: "34",
           color: "#fff"
         }),
-        e: common_assets._imports_1$1
+        f: common_assets._imports_1
       } : {});
     };
   }

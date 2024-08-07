@@ -61,7 +61,7 @@
 				</template>
 			</common-title>
 			<view class="content">
-				<theme-item class="theme-item" v-for="item in 8" :key="item"></theme-item>
+				<theme-item :currentIndex="index" class="theme-item" v-for="(item,index) in 8" :key="item"></theme-item>
 				<theme-item :isshowLast="true"></theme-item>
 			</view>
 		</view>
@@ -70,6 +70,9 @@
 
 <script setup>
 
+  const previewImageHandler = (index)=>{
+		console.log(index);
+	}
 </script>
 
 <style scoped lang="less">

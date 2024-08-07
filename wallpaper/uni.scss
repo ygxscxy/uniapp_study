@@ -7,6 +7,9 @@
  */
 
 @import 'uview-plus/theme.scss';
+/*每个页面公共css */
+@import "@/common/style/style.scss";
+@import "@/common/style/base-style.scss";
 
 /**
  * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
@@ -16,7 +19,6 @@
 
 /* 颜色变量 */
 
-/* 行为相关颜色 */
 $uni-color-primary: #007aff;
 $uni-color-success: #4cd964;
 $uni-color-warning: #f0ad4e;
