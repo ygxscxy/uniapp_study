@@ -21,12 +21,48 @@
 						<view class="swiper-item">内容内容内容内容内容内容内容内容内容内容内容内容内容内容1</view>
 					</swiper-item>
 					<swiper-item>
-						<view class="swiper-item">内容2</view>
+						<view class="swiper-item">内容内容内容内容内容内容内容内容内容内容内容内容内容内容2</view>
 					</swiper-item>
 				</swiper>
 			</view>
 			<view class="right">
 				<up-icon name="arrow-right" color="#666" size="16"></up-icon>
+			</view>
+		</view>
+		<view class="select">
+			<common-title>
+				<template #name>
+					<view>每日推荐</view>
+				</template>
+				<template #custom>
+					<view class="date">
+						<uni-icons type="calendar" size="18" color="#28b389"></uni-icons>
+						<uni-dateformat :date="Date.now()" format="dd" ></uni-dateformat>
+					</view>
+				</template>
+			</common-title>
+			<view class="content">
+				<scroll-view scroll-x >
+					<view class="select-item" v-for="item in 5" :key="item">
+						<image mode="aspectFill" src="../../common/images/preview1.jpg" ></image>
+					</view>
+				</scroll-view>
+			</view>
+		</view>
+		<view class="theme">
+			<common-title>
+				<template #name>
+					<view>专题精选</view>
+				</template>
+				<template #custom>
+					<view class="text">
+						More+
+					</view>
+				</template>
+			</common-title>
+			<view class="content">
+				<theme-item class="theme-item" v-for="item in 8" :key="item"></theme-item>
+				<theme-item :isshowLast="true"></theme-item>
 			</view>
 		</view>
 	</view>
@@ -92,6 +128,53 @@
 				display: flex;
 				justify-content: end;
 				margin-right: 15rpx;
+			}
+		}
+		
+			
+		.select{
+			margin-top: 20rpx;
+			margin-bottom: 30rpx;
+			.content{
+				width: 720rpx;
+				margin-top: 30rpx;
+					
+				scroll-view{
+					white-space: nowrap;
+					.select-item{
+						width: 200rpx;
+						height: 430rpx;
+						display: inline-block;
+						margin-right: 10rpx;
+						&:last-child{
+							margin-right: 30rpx;
+						}
+						image{
+							border-radius: 12rpx;
+							width: 100%;
+							height: 100%;
+						}
+					}
+				}
+			}
+			.date{
+				display: flex;
+				align-items: center;
+				
+				color: #28b389;
+			}
+		}
+	
+		.theme{
+			.text{
+				font-size: 32rpx;
+				color: #888;
+			}
+			.content{
+				margin-top: 30rpx;
+				display: grid;
+				gap: 15rpx;
+				grid-template-columns: repeat(3,1fr);
 			}
 		}
 	}

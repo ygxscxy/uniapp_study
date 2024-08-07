@@ -1,0 +1,92 @@
+.home-layout.data-v-1cf27b2a {
+  padding: 30rpx;
+}
+.home-layout .banner.data-v-1cf27b2a {
+  margin-bottom: 20rpx;
+}
+.home-layout .banner .swiper-item image.data-v-1cf27b2a {
+  width: 100%;
+  height: 100%;
+}
+.home-layout .notice.data-v-1cf27b2a {
+  background-color: red;
+  height: 80rpx;
+  background-color: #f9f9f9;
+  border-radius: 80rpx;
+  display: flex;
+  line-height: 80rpx;
+}
+.home-layout .notice .left.data-v-1cf27b2a {
+  width: 140rpx;
+  display: flex;
+  padding: 20rpx;
+  align-items: center;
+}
+.home-layout .notice .left text.data-v-1cf27b2a {
+  color: #28b389;
+  text-align: center;
+  font-weight: 600;
+  font-size: 28rpx;
+}
+.home-layout .notice .center.data-v-1cf27b2a {
+  flex: 1;
+}
+.home-layout .notice .center swiper.data-v-1cf27b2a {
+  height: 100%;
+}
+.home-layout .notice .center swiper swiper-item.data-v-1cf27b2a {
+  font-size: 30rpx;
+  color: #999;
+  height: 100%;
+}
+.home-layout .notice .center swiper swiper-item .swiper-item.data-v-1cf27b2a {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.home-layout .notice .right.data-v-1cf27b2a {
+  width: 70rpx;
+  display: flex;
+  justify-content: end;
+  margin-right: 15rpx;
+}
+.home-layout .select.data-v-1cf27b2a {
+  margin-top: 20rpx;
+  margin-bottom: 30rpx;
+}
+.home-layout .select .content.data-v-1cf27b2a {
+  width: 720rpx;
+  margin-top: 30rpx;
+}
+.home-layout .select .content scroll-view.data-v-1cf27b2a {
+  white-space: nowrap;
+}
+.home-layout .select .content scroll-view .select-item.data-v-1cf27b2a {
+  width: 200rpx;
+  height: 430rpx;
+  display: inline-block;
+  margin-right: 10rpx;
+}
+.home-layout .select .content scroll-view .select-item.data-v-1cf27b2a:last-child {
+  margin-right: 30rpx;
+}
+.home-layout .select .content scroll-view .select-item image.data-v-1cf27b2a {
+  border-radius: 12rpx;
+  width: 100%;
+  height: 100%;
+}
+.home-layout .select .date.data-v-1cf27b2a {
+  display: flex;
+  align-items: center;
+  color: #28b389;
+}
+.home-layout .theme .text.data-v-1cf27b2a {
+  font-size: 32rpx;
+  color: #888;
+}
+.home-layout .theme .content.data-v-1cf27b2a {
+  margin-top: 30rpx;
+  display: grid;
+  gap: 15rpx;
+  grid-template-columns: repeat(3, 1fr);
+}
