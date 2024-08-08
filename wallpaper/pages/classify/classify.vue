@@ -2,15 +2,23 @@
 	<view class="classLayout pageBg">
 		<custom-nav-bar title="分类"></custom-nav-bar>
 		<view class="classify">
-			<theme-item v-for="item in 15"></theme-item>
+			<theme-item :itemData="item" v-for="item in classifyList" :key="item._id"></theme-item>
 		</view>
-		
-		
 	</view>
 </template>
 
 <script setup>
+import { onMounted, ref } from 'vue';
+import { getSpecialSubjectList } from '../../service';
+ 
+  const classifyList = ref([])
 
+	onMounted(async ()=>{
+	 const res = await	getSpecialSubjectList(20)
+	 classifyList.value = res.data
+	})
+	
+	
 </script>
 
 <style lang="scss" scoped>

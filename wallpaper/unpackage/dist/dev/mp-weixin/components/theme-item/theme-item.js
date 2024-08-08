@@ -1,6 +1,7 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
 const common_assets = require("../../common/assets.js");
+const utils_formatDate = require("../../utils/formatDate.js");
 if (!Array) {
   const _easycom_uni_icons2 = common_vendor.resolveComponent("uni-icons");
   _easycom_uni_icons2();
@@ -16,24 +17,36 @@ const _sfc_main = {
       type: Boolean,
       default: false
     },
-    currentIndex: Number
+    currentIndex: Number,
+    itemData: {
+      type: Object,
+      default() {
+        return {
+          name: "默认",
+          updateTime: 1e3 * 60 * 60 * 5,
+          picurl: "../../common/images/more.jpg"
+        };
+      }
+    }
   },
   setup(__props) {
     return (_ctx, _cache) => {
       return common_vendor.e({
         a: !__props.isshowLast
       }, !__props.isshowLast ? {
-        b: common_assets._imports_0$4,
-        c: `/pages/classiylist/classiylist?currentIndex=${__props.currentIndex}`
+        b: common_vendor.t(common_vendor.unref(utils_formatDate.timeAgo)(__props.itemData.updateTime)),
+        c: __props.itemData.picurl,
+        d: common_vendor.t(__props.itemData.name),
+        e: `/pages/classiylist/classiylist?classid=${__props.itemData._id}&title=${__props.itemData.name}`
       } : {}, {
-        d: __props.isshowLast
+        f: __props.isshowLast
       }, __props.isshowLast ? {
-        e: common_vendor.p({
+        g: common_vendor.p({
           type: "more-filled",
           size: "34",
           color: "#fff"
         }),
-        f: common_assets._imports_1
+        h: common_assets._imports_0$1
       } : {});
     };
   }

@@ -9,3 +9,7 @@ view,swiper,swiper-item,.banner{
 	linear-gradient(to right,#beecd8 20%,#F4E2D8);
 	min-height: 80vh;
 }
+
+.safe-area-inset-bottom{
+	height: env(safe-area-inset-bottom);
+}

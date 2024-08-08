@@ -1,6 +1,6 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
-const common_assets = require("../../common/assets.js");
+const service_modules_home = require("../../service/modules/home.js");
 if (!Array) {
   const _easycom_custom_nav_bar2 = common_vendor.resolveComponent("custom-nav-bar");
   const _easycom_up_icon2 = common_vendor.resolveComponent("up-icon");
@@ -22,6 +22,21 @@ if (!Math) {
 const _sfc_main = {
   __name: "index",
   setup(__props) {
+    const homeBannerList = common_vendor.ref([]);
+    const eachDayRecommendList = common_vendor.ref([]);
+    const noticeList = common_vendor.ref([]);
+    const specialSubjectList = common_vendor.ref([]);
+    common_vendor.onMounted(async () => {
+      const res = await service_modules_home.getBannerList();
+      homeBannerList.value = res.data;
+      const res2 = await service_modules_home.getEachDayRecommendList();
+      eachDayRecommendList.value = res2.data;
+      const res3 = await service_modules_home.getNoticeList();
+      noticeList.value = res3.data;
+      const res4 = await service_modules_home.getSpecialSubjectList();
+      specialSubjectList.value = res4.data;
+      console.log(specialSubjectList.value);
+    });
     const goPreview = () => {
       common_vendor.index.navigateTo({
         url: "/pages/preview/preview"
@@ -34,40 +49,52 @@ const _sfc_main = {
     };
     return (_ctx, _cache) => {
       return {
-        a: common_assets._imports_0,
+        a: common_vendor.f(homeBannerList.value, (item, k0, i0) => {
+          return {
+            a: item.picurl,
+            b: item._id
+          };
+        }),
         b: common_vendor.p({
           name: "volume-fill",
           color: "#28b389",
           size: "20"
         }),
-        c: common_vendor.p({
+        c: common_vendor.f(noticeList.value, (item, index, i0) => {
+          return {
+            a: common_vendor.t(item.title),
+            b: item._id
+          };
+        }),
+        d: common_vendor.p({
           name: "arrow-right",
           color: "#666",
           size: "16"
         }),
-        d: common_vendor.o(goNotice),
-        e: common_vendor.p({
+        e: common_vendor.o(goNotice),
+        f: common_vendor.p({
           type: "calendar",
           size: "18",
           color: "#28b389"
         }),
-        f: common_vendor.p({
+        g: common_vendor.p({
           date: Date.now(),
           format: "dd"
         }),
-        g: common_vendor.f(5, (item, k0, i0) => {
+        h: common_vendor.f(eachDayRecommendList.value, (item, k0, i0) => {
           return {
-            a: item,
-            b: common_vendor.o(goPreview, item)
+            a: item.smallPicurl,
+            b: item._id,
+            c: common_vendor.o(goPreview, item._id)
           };
         }),
-        h: common_assets._imports_0$1,
-        i: common_vendor.f(8, (item, index, i0) => {
+        i: common_vendor.f(specialSubjectList.value, (item, index, i0) => {
           return {
-            a: item,
+            a: item._id,
             b: "1cf27b2a-7-" + i0,
             c: common_vendor.p({
-              currentIndex: index
+              currentIndex: index,
+              itemData: item
             })
           };
         }),

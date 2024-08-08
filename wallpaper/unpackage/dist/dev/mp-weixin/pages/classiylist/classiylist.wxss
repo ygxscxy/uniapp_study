@@ -13,6 +13,9 @@ view.data-v-d4bdad1a, swiper.data-v-d4bdad1a, swiper-item.data-v-d4bdad1a, .bann
   background: linear-gradient(to bottom, transparent, #fff 400rpx), linear-gradient(to right, #beecd8 20%, #F4E2D8);
   min-height: 80vh;
 }
+.safe-area-inset-bottom.data-v-d4bdad1a {
+  height: env(safe-area-inset-bottom);
+}
 
 /**
  * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
@@ -44,4 +47,13 @@ view.data-v-d4bdad1a, swiper.data-v-d4bdad1a, swiper-item.data-v-d4bdad1a, .bann
   width: 100%;
   height: 100%;
   display: block;
+}
+.tip.data-v-d4bdad1a {
+  text-align: center;
+  width: 100vw;
+  margin: 20rpx 0;
+  color: #aaa;
+}
+.loading-layout.data-v-d4bdad1a {
+  padding: 30rpx 0;
 }

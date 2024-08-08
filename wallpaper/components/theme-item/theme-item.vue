@@ -1,14 +1,14 @@
 <template>
 	<view class="theme-item" v-if="!isshowLast">
-		<navigator :url="`/pages/classiylist/classiylist?currentIndex=${currentIndex}`">
+		<navigator :url="`/pages/classiylist/classiylist?classid=${itemData._id}&title=${itemData.name}`">
 			<view class="top">
-				aaaa
+				{{timeAgo(itemData.updateTime)}}前更新
 			</view>
 			<view class="content">
-					<image class="img" src="../../common/images/classify1.jpg" mode="aspectFill"></image>
+					<image class="img" :src="itemData.picurl" mode="aspectFill"></image>
 			</view>
 			<view class="bottom">
-				aaa
+				{{itemData.name}}
 			</view>
 		</navigator>
 	</view>
@@ -30,19 +30,30 @@
 </template>
 
 <script setup>
-	defineProps({
+import timeAgo from '../../utils/formatDate';
+	const props = defineProps({
 		isshowLast: {
 			type:Boolean,
 			default: false
 		},
-		currentIndex:Number
+		currentIndex:Number,
+		itemData: {
+			type:Object,
+			default(){
+				return {
+					name:"默认",
+					updateTime: 1000*60*60*5,
+					picurl:"../../common/images/more.jpg"
+				}
+			}
+		}
 	})
+	
 </script>
 
 <style scoped lang="scss">
 .theme-item{
 	position: relative;
-	margin-bottom: 50rpx;
 	.top{
 		position: absolute;
 		z-index: 1;

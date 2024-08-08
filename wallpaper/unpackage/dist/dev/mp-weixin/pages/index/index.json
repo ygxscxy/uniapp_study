@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "咸虾米",
+  "navigationBarTitleText": "首页",
   "navigationStyle": "custom",
   "usingComponents": {
     "custom-nav-bar": "../../components/custom-nav-bar/custom-nav-bar",

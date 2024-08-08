@@ -13,6 +13,9 @@ view.data-v-0f7520f0, swiper.data-v-0f7520f0, swiper-item.data-v-0f7520f0, .bann
   background: linear-gradient(to bottom, transparent, #fff 400rpx), linear-gradient(to right, #beecd8 20%, #F4E2D8);
   min-height: 80vh;
 }
+.safe-area-inset-bottom.data-v-0f7520f0 {
+  height: env(safe-area-inset-bottom);
+}
 
 /**
  * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能

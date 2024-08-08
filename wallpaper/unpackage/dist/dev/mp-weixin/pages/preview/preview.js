@@ -1,6 +1,5 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
-const common_assets = require("../../common/assets.js");
 const utils_system = require("../../utils/system.js");
 if (!Array) {
   const _easycom_uni_icons2 = common_vendor.resolveComponent("uni-icons");
@@ -24,6 +23,17 @@ const _sfc_main = {
     const scorePopup = common_vendor.ref(null);
     const userScore = common_vendor.ref(0);
     const isConfirmScore = common_vendor.ref(false);
+    const storageClassifyList = common_vendor.ref([]);
+    common_vendor.onMounted(() => {
+      storageClassifyList.value = common_vendor.index.getStorageSync("storageClassifyList") || [];
+      storageClassifyList.value = storageClassifyList.value.map((item) => {
+        return {
+          ...item,
+          picurl: item.smallPicurl.replace("_small.webp", ".jpg")
+        };
+      });
+      console.log(storageClassifyList.value);
+    });
     const clickInfo = () => {
       infoPopup.value.open();
     };
@@ -49,20 +59,24 @@ const _sfc_main = {
     };
     return (_ctx, _cache) => {
       return common_vendor.e({
-        a: common_vendor.f(5, (item, k0, i0) => {
-          return {};
+        a: common_vendor.f(storageClassifyList.value, (item, k0, i0) => {
+          return {
+            a: common_vendor.o(maskChange, item._id),
+            b: item.picurl,
+            c: item._id
+          };
         }),
-        b: common_vendor.o(maskChange),
-        c: common_assets._imports_0$1,
-        d: maskState.value
+        b: maskState.value
       }, maskState.value ? {
-        e: common_vendor.p({
+        c: common_vendor.p({
           type: "back",
           color: "#fff",
           size: "20"
         }),
-        f: common_vendor.o(goBack),
-        g: common_vendor.unref(utils_system.getStatusBarHeight)() + "px",
+        d: common_vendor.o(goBack),
+        e: common_vendor.unref(utils_system.getStatusBarHeight)() + "px",
+        f: common_vendor.t(1),
+        g: common_vendor.t(storageClassifyList.value.length),
         h: common_vendor.p({
           date: /* @__PURE__ */ new Date(),
           format: "hh:mm"

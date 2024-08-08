@@ -12,7 +12,8 @@
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "咸虾米壁纸",
     "navigationBarBackgroundColor": "#fff",
-    "backgroundColor": "#F8F8F8"
+    "backgroundColor": "#F8F8F8",
+    "onReachBottomDistance": 50
   },
   "tabBar": {
     "selectedColor": "#28b389",

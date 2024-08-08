@@ -3,7 +3,7 @@
 		{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "咸虾米",
+				"navigationBarTitleText": "首页",
 				// 自定义top bar
 				"navigationStyle": "custom"
 			}
@@ -27,14 +27,14 @@
 			"path" : "pages/classiylist/classiylist",
 			"style" : 
 			{
-				"navigationBarTitleText" : ""
+				"navigationBarTitleText" : "分类列表"
 			}
 		},
 		{
 			"path" : "pages/preview/preview",
 			"style" : 
 			{
-				"navigationBarTitleText" : "",
+				"navigationBarTitleText" : "预览",
 				 "navigationStyle": "custom"
 				
 			}
@@ -82,7 +82,8 @@
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "咸虾米壁纸",
 		"navigationBarBackgroundColor": "#fff",
-		"backgroundColor": "#F8F8F8"
+		"backgroundColor": "#F8F8F8",
+		"onReachBottomDistance":50
 	},
 	"uniIdRouter": {},
 	"easycom": {

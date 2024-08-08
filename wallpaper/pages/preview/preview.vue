@@ -1,8 +1,8 @@
 <template>
 	<view class="preview">
 		<swiper circular>
-			<swiper-item v-for="item in 5">
-				<image @click="maskChange" src="../../common/images/preview1.jpg" mode="aspectFill"></image>
+			<swiper-item v-for="item in storageClassifyList" :key="item._id">
+				<image @click="maskChange" :src="item.picurl" mode="aspectFill"></image>
 			</swiper-item>
 		</swiper>
 		
@@ -11,7 +11,7 @@
 			:style="{top:getStatusBarHeight()+'px'}">
 				<uni-icons type="back" color="#fff" size="20"></uni-icons>
 			</view>
-			<view class="count">3 / 9</view>
+			<view class="count">{{1}} / {{storageClassifyList.length}}</view>
 			<view class="time">
 				<uni-dateformat :date="new Date()" format="hh:mm"></uni-dateformat>
 			</view>
@@ -123,7 +123,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import {getStatusBarHeight} from "@/utils/system.js"
 
 const maskState =ref(true);
@@ -132,6 +132,20 @@ const scorePopup = ref(null);
 const userScore =ref(0)
 
 const isConfirmScore = ref(false)
+
+const storageClassifyList = ref([])
+
+	
+onMounted(()=>{
+	storageClassifyList.value = uni.getStorageSync("storageClassifyList") || []
+	storageClassifyList.value = storageClassifyList.value.map(item=>{
+		return {
+			...item,
+			picurl:item.smallPicurl.replace("_small.webp",".jpg")
+		}
+	})
+	console.log(storageClassifyList.value);
+})
 
 
 //点击info弹窗

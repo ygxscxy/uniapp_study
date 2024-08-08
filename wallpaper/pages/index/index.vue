@@ -4,9 +4,9 @@
 		<view class="banner">
 			<swiper :indicator-dots="true" :autoplay="true"
 				:interval="3000" :duration="1000" >
-				<swiper-item>
+				<swiper-item v-for="item in homeBannerList" :key="item._id">
 					<view class="swiper-item">
-						<image src="../../common/images/banner1.jpg" mode="widthFix"></image>
+						<image :src="item.picurl" mode="widthFix"></image>
 					</view>
 				</swiper-item>
 			</swiper>
@@ -18,11 +18,8 @@
 			</view>
 			<view class="center">
 				<swiper vertical :autoplay="true" :interval="1500" :duration="300">
-					<swiper-item>
-						<view class="swiper-item">内容内容内容内容内容内容内容内容内容内容内容内容内容内容1</view>
-					</swiper-item>
-					<swiper-item>
-						<view class="swiper-item">内容内容内容内容内容内容内容内容内容内容内容内容内容内容2</view>
+					<swiper-item v-for="(item,index) in noticeList" :key="item._id">
+						<view class="swiper-item">{{item.title}}</view>
 					</swiper-item>
 				</swiper>
 			</view>
@@ -44,8 +41,8 @@
 			</common-title>
 			<view class="content">
 				<scroll-view scroll-x >
-					<view class="select-item" v-for="item in 5" :key="item" @click="goPreview">
-						<image mode="aspectFill" src="../../common/images/preview1.jpg" ></image>
+					<view class="select-item" v-for="item in eachDayRecommendList" :key="item._id" @click="goPreview">
+						<image mode="aspectFill" :src="item.smallPicurl" ></image>
 					</view>
 				</scroll-view>
 			</view>
@@ -62,7 +59,7 @@
 				</template>
 			</common-title>
 			<view class="content">
-				<theme-item :currentIndex="index" class="theme-item" v-for="(item,index) in 8" :key="item"></theme-item>
+				<theme-item :currentIndex="index" class="theme-item" :itemData="item" v-for="(item,index) in specialSubjectList" :key="item._id"></theme-item>
 				<theme-item :isshowLast="true"></theme-item>
 			</view>
 		</view>
@@ -70,7 +67,35 @@
 </template>
 
 <script setup>
-
+	
+	
+	import { getBannerList,getEachDayRecommendList,getNoticeList,getSpecialSubjectList } from '../../service';
+	import {onMounted, ref} from "vue"
+	
+	const homeBannerList = ref([])
+	const eachDayRecommendList = ref([])
+	const noticeList  = ref([])
+	const specialSubjectList = ref([])
+	
+	
+	onMounted( async ()=>{
+		// 获取banner数据
+		const res = await  getBannerList()
+		homeBannerList.value = res.data
+		
+		// 获取每日精选数据
+		const res2 = await getEachDayRecommendList()
+		eachDayRecommendList.value = res2.data
+		// 获取通知列表
+		const res3 = await getNoticeList()
+		noticeList.value = res3.data
+		// 专题精选数据
+		const res4 = await getSpecialSubjectList()
+		specialSubjectList.value = res4.data
+		
+		console.log(specialSubjectList.value);
+	})
+	
   const previewImageHandler = (index)=>{
 		console.log(index);
 	}
