@@ -6,10 +6,10 @@
  *
  */
 /*每个页面公共css */
-view.data-v-6bcfa975, swiper.data-v-6bcfa975, swiper-item.data-v-6bcfa975, .banner.data-v-6bcfa975 {
+view.data-v-0f737f11, swiper.data-v-0f737f11, swiper-item.data-v-0f737f11, .banner.data-v-0f737f11 {
   box-sizing: border-box;
 }
-.pageBg.data-v-6bcfa975 {
+.pageBg.data-v-0f737f11 {
   background: linear-gradient(to bottom, transparent, #fff 400rpx), linear-gradient(to right, #beecd8 20%, #F4E2D8);
   min-height: 80vh;
 }
@@ -31,9 +31,37 @@ view.data-v-6bcfa975, swiper.data-v-6bcfa975, swiper-item.data-v-6bcfa975, .bann
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.classify.data-v-6bcfa975 {
+.noticeLayout.data-v-0f737f11 {
   padding: 30rpx;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 15rpx;
+}
+.noticeLayout .title.data-v-0f737f11 {
+  font-size: 40rpx;
+  color: #111;
+  line-height: 1.6em;
+  padding-bottom: 30rpx;
+  display: flex;
+}
+.noticeLayout .title .tag.data-v-0f737f11 {
+  transform: scale(0.8);
+  transform-origin: left center;
+  flex-shrink: 0;
+}
+.noticeLayout .title .font.data-v-0f737f11 {
+  padding-left: 6rpx;
+}
+.noticeLayout .info.data-v-0f737f11 {
+  display: flex;
+  align-items: center;
+  color: #999;
+  font-size: 28rpx;
+}
+.noticeLayout .info .item.data-v-0f737f11 {
+  padding-right: 20rpx;
+}
+.noticeLayout .content.data-v-0f737f11 {
+  padding: 50rpx 0;
+}
+.noticeLayout .count.data-v-0f737f11 {
+  color: #999;
+  font-size: 28rpx;
 }

@@ -170,6 +170,7 @@ const maskChange = ()=>{
 
 //返回上一页
 const goBack= ()=>{
+	console.log("xxx");
 	uni.navigateBack()
 }
 </script>

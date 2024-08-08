@@ -44,6 +44,7 @@ const _sfc_main = {
       maskState.value = !maskState.value;
     };
     const goBack = () => {
+      console.log("xxx");
       common_vendor.index.navigateBack();
     };
     return (_ctx, _cache) => {

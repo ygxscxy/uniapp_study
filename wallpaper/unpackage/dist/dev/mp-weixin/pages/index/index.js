@@ -22,6 +22,16 @@ if (!Math) {
 const _sfc_main = {
   __name: "index",
   setup(__props) {
+    const goPreview = () => {
+      common_vendor.index.navigateTo({
+        url: "/pages/preview/preview"
+      });
+    };
+    const goNotice = () => {
+      common_vendor.index.navigateTo({
+        url: "/pages/notice/detail"
+      });
+    };
     return (_ctx, _cache) => {
       return {
         a: common_assets._imports_0,
@@ -35,22 +45,24 @@ const _sfc_main = {
           color: "#666",
           size: "16"
         }),
-        d: common_vendor.p({
+        d: common_vendor.o(goNotice),
+        e: common_vendor.p({
           type: "calendar",
           size: "18",
           color: "#28b389"
         }),
-        e: common_vendor.p({
+        f: common_vendor.p({
           date: Date.now(),
           format: "dd"
         }),
-        f: common_vendor.f(5, (item, k0, i0) => {
+        g: common_vendor.f(5, (item, k0, i0) => {
           return {
-            a: item
+            a: item,
+            b: common_vendor.o(goPreview, item)
           };
         }),
-        g: common_assets._imports_0$1,
-        h: common_vendor.f(8, (item, index, i0) => {
+        h: common_assets._imports_0$1,
+        i: common_vendor.f(8, (item, index, i0) => {
           return {
             a: item,
             b: "1cf27b2a-7-" + i0,
@@ -59,7 +71,7 @@ const _sfc_main = {
             })
           };
         }),
-        i: common_vendor.p({
+        j: common_vendor.p({
           isshowLast: true
         })
       };

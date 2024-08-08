@@ -11,8 +11,8 @@
 				</swiper-item>
 			</swiper>
 		</view>
-		<view class="notice">
-			<view class="left">
+		<view class="notice" @click="goNotice">
+			<view class="left" >
 				<up-icon name="volume-fill" color="#28b389" size="20"></up-icon>
 				<text>公告</text>
 			</view>
@@ -44,7 +44,7 @@
 			</common-title>
 			<view class="content">
 				<scroll-view scroll-x >
-					<view class="select-item" v-for="item in 5" :key="item">
+					<view class="select-item" v-for="item in 5" :key="item" @click="goPreview">
 						<image mode="aspectFill" src="../../common/images/preview1.jpg" ></image>
 					</view>
 				</scroll-view>
@@ -73,6 +73,18 @@
 
   const previewImageHandler = (index)=>{
 		console.log(index);
+	}
+	
+	const goPreview = ()=>{
+		uni.navigateTo({
+			url:"/pages/preview/preview"
+		})
+	}
+	
+	const goNotice = ()=>{
+		uni.navigateTo({
+			url:"/pages/notice/detail"
+		})
 	}
 </script>
 

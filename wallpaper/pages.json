@@ -12,7 +12,8 @@
 			"path" : "pages/classify/classify",
 			"style" : 
 			{
-				"navigationBarTitleText" : "分类"
+				"navigationBarTitleText" : "分类",
+				"navigationStyle": "custom"
 			}
 		},
 		{
@@ -33,7 +34,23 @@
 			"path" : "pages/preview/preview",
 			"style" : 
 			{
-				"navigationBarTitleText" : ""
+				"navigationBarTitleText" : "",
+				 "navigationStyle": "custom"
+				
+			}
+		},
+		{
+			"path" : "pages/notice/notice",
+			"style" : 
+			{
+				"navigationBarTitleText" : "公告"
+			}
+		},
+		{
+			"path" : "pages/notice/detail",
+			"style" : 
+			{
+				"navigationBarTitleText" : "公告详情"
 			}
 		}
 	],
