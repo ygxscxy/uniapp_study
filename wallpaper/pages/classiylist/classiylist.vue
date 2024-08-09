@@ -4,7 +4,7 @@
 			<uni-load-more status="loading"></uni-load-more>
 		</view>
 		<view class="content">
-			<navigator url="/pages/preview/preview" class="item" :key="item._id" v-for="item in classifyDetailList">
+			<navigator :url="'/pages/preview/preview?id='+item._id+'&title='+title" class="item" :key="item._id" v-for="item in classifyDetailList">
 				<image :src="item.smallPicurl" mode="aspectFill"></image>
 			</navigator>
 		</view>
@@ -27,12 +27,16 @@ const classifyDetailList = ref([])
 const currentPageNum = ref(1)
 const isMoreData = ref(true)
 
+const title = ref("")
+
 
 onLoad((option)=>{
 	classifyId.value = option.classid,
 	uni.setNavigationBarTitle({
 		title: option.title
 	})
+	
+	title.value = option.title
 })
 
 

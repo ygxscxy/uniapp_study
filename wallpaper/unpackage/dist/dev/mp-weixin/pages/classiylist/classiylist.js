@@ -16,10 +16,12 @@ const _sfc_main = {
     const classifyDetailList = common_vendor.ref([]);
     const currentPageNum = common_vendor.ref(1);
     const isMoreData = common_vendor.ref(true);
+    const title = common_vendor.ref("");
     common_vendor.onLoad((option) => {
       classifyId.value = option.classid, common_vendor.index.setNavigationBarTitle({
         title: option.title
       });
+      title.value = option.title;
     });
     common_vendor.onMounted(async () => {
       const res = await service_modules_classify.getClassifyDetailList({ classid: classifyId.value, pageNum: currentPageNum.value, pageSize: 12 });
@@ -54,7 +56,8 @@ const _sfc_main = {
         c: common_vendor.f(classifyDetailList.value, (item, k0, i0) => {
           return {
             a: item.smallPicurl,
-            b: item._id
+            b: "/pages/preview/preview?id=" + item._id + "&title=" + title.value,
+            c: item._id
           };
         }),
         d: !isMoreData.value

@@ -16,6 +16,7 @@ export default function(config){
 			uni.showModal({
 				title:"数据加载失败...",
 			})
+			uni.hideLoading()
 			reject(err)
 		})
 	})

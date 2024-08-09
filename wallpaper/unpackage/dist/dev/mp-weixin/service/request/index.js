@@ -17,6 +17,7 @@ function dbRequest(config) {
       common_vendor.index.showModal({
         title: "数据加载失败..."
       });
+      common_vendor.index.hideLoading();
       reject(err);
     });
   });
