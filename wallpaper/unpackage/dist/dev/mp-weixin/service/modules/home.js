@@ -21,7 +21,6 @@ const getSpecialSubjectList = async (pageSize = 8) => {
   const res = await service_request_index.dbRequest({ url: "/classify", data: {
     pageSize
   } });
-  console.log(res.data);
   return res.data;
 };
 exports.getBannerList = getBannerList;

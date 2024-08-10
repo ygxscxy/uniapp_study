@@ -35,18 +35,31 @@ const _sfc_main = {
       noticeList.value = res3.data;
       const res4 = await service_modules_home.getSpecialSubjectList();
       specialSubjectList.value = res4.data;
-      console.log(specialSubjectList.value);
     });
-    const goPreview = () => {
+    const goPreview = (id) => {
+      common_vendor.index.setStorageSync("storageClassifyList", eachDayRecommendList.value);
       common_vendor.index.navigateTo({
-        url: "/pages/preview/preview"
+        url: "/pages/preview/preview?id=" + id + "&title=每日精选"
       });
     };
     const goNotice = () => {
       common_vendor.index.navigateTo({
-        url: "/pages/notice/detail"
+        url: "/pages/notice/detail?id=index"
       });
     };
+    common_vendor.onShareAppMessage((e) => {
+      return {
+        path: "/pages/index/index",
+        title: "dbb壁纸首页"
+      };
+    });
+    common_vendor.onShareTimeline(() => {
+      return {
+        title: "dbb壁纸首页",
+        imageUrl: "/static/images/xxmLogo.png",
+        path: "/pages/index/index"
+      };
+    });
     return (_ctx, _cache) => {
       return {
         a: common_vendor.f(homeBannerList.value, (item, k0, i0) => {
@@ -85,7 +98,7 @@ const _sfc_main = {
           return {
             a: item.smallPicurl,
             b: item._id,
-            c: common_vendor.o(goPreview, item._id)
+            c: common_vendor.o(($event) => goPreview(item._id), item._id)
           };
         }),
         i: common_vendor.f(specialSubjectList.value, (item, index, i0) => {
@@ -106,4 +119,5 @@ const _sfc_main = {
   }
 };
 const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__scopeId", "data-v-1cf27b2a"]]);
+_sfc_main.__runtimeHooks = 6;
 wx.createPage(MiniProgramPage);

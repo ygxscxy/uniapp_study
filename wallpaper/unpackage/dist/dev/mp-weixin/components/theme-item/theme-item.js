@@ -46,7 +46,7 @@ const _sfc_main = {
           size: "34",
           color: "#fff"
         }),
-        h: common_assets._imports_0$1
+        h: common_assets._imports_0$2
       } : {});
     };
   }

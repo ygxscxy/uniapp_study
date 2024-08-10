@@ -1,16 +1,21 @@
 <template>
-	<view class="preview">
+	<view class="preview safe-area">
 		<swiper circular :current="currentPicIndex" @change="swiperHandler">
 			<swiper-item  v-for="(item,index) in storageClassifyList" :key="item._id">
-				<image v-if="readImgsIndex.includes(index)" @click="maskChange" :src="item.picurl" mode="aspectFill"></image>
+				<image v-if="readImgsIndex.includes(index)||type=='share'" @click="maskChange" :src="item.picurl" mode="aspectFill"></image>
 			</swiper-item>
 		</swiper>
 		
 		<view class="mask" v-if="maskState">
-			<view class="goBack"  @click="goBack"
+			<view class="goBack" v-if="type!='share'"  @click="goBack"
 			:style="{top:getStatusBarHeight()+'px'}">
 				<uni-icons type="back" color="#fff" size="20"></uni-icons>
 			</view>
+			<view class="goBack" v-if="type=='share'"  @click="goBack('share')"
+			:style="{top:getStatusBarHeight()+'px'}">
+				<uni-icons type="home" color="#fff" size="20"></uni-icons>
+			</view>
+			
 			<view class="count">{{currentPicIndex+1}} / {{storageClassifyList.length}}</view>
 			<view class="time">
 				<uni-dateformat :date="new Date()" format="hh:mm"></uni-dateformat>
@@ -26,7 +31,7 @@
 				
 				<view class="box" @click="clickScore">
 					<uni-icons type="star" :color="Boolean(curentImgInfo?.userScore)?'red':''" size="28"></uni-icons>
-					<view class="text">{{curentImgInfo.score}}分</view>
+					<view class="text">{{curentImgInfo?.score}}分</view>
 				</view>
 				
 				<view class="box" @click="downloadHandler">
@@ -37,7 +42,7 @@
 		</view>
 		
 		<uni-popup ref="infoPopup" type="bottom">
-			<view class="infoPopup">
+			<view   class="infoPopup">
 				<view class="popHeader">
 					<view></view>
 					<view class="title">壁纸信息</view>
@@ -65,8 +70,8 @@
 						<view class="row">
 							<text class="label">评分：</text>
 							<view class='value roteBox'>
-								<uni-rate readonly touchable :value="curentImgInfo.score" size="16"/>
-								<text class="score">{{curentImgInfo.score}}分</text>
+								<uni-rate readonly touchable :value="curentImgInfo?.score" size="16"/>
+								<text class="score">{{curentImgInfo?.score}}分</text>
 							</view>
 						</view>
 						
@@ -80,7 +85,7 @@
 						<view class="row">
 							<text class="label">标签：</text>
 							<view class='value tabs'>
-								<view class="tab" key="item" v-for="item in curentImgInfo.tabs">{{item}}</view>
+								<view class="tab" :key="item" v-for="item in curentImgInfo.tabs">{{item}}</view>
 							</view>
 						</view>	
 											
@@ -123,8 +128,9 @@
 import { onMounted, ref } from 'vue';
 import {getStatusBarHeight} from "@/utils/system.js"
 import {onLoad} from "@dcloudio/uni-app"
-
-import {setPreviewScore} from "@/service/index.js"
+	import {onShareAppMessage,onShareTimeline} from "@dcloudio/uni-app"
+import {getDownloadWall, setPreviewScore} from "@/service/index.js"
+import { getSimpleWallDetail } from '../../service/modules/preview';
 
 const maskState =ref(true);
 const infoPopup = ref(null);
@@ -145,29 +151,47 @@ const curentImgInfo = ref({})
 const title = ref("")
 
 
+const type = ref("")
 
-onLoad((option)=>{
+
+onLoad(async(option)=>{
 	currentId.value = option.id
 	title.value = option.title
+	type.value = option.type||""
+	
+	// https://tea.qingnian8.com/api/bizhi/detailWall
+	if(type.value==="share"){
+		const res = await getSimpleWallDetail(option.id)
+		storageClassifyList.value = res.data
+	}
 })
 
-	
 onMounted(()=>{
-	storageClassifyList.value = uni.getStorageSync("storageClassifyList") || []
-	storageClassifyList.value = storageClassifyList.value.map(item=>{
-		return {
-			...item,
-			picurl:item.smallPicurl.replace("_small.webp",".jpg")
-		}
-	})
-	currentPicIndex.value = storageClassifyList.value.findIndex(item=>item._id===currentId.value)
-	
-	readImgsIndex.value.push(
-		currentPicIndex.value===0? storageClassifyList.value.length:currentPicIndex.value-1,
-		currentPicIndex.value,
-		currentPicIndex.value===storageClassifyList.value.length? 0: currentPicIndex.value+1,
-	)
-	curentImgInfo.value = storageClassifyList.value[currentPicIndex.value]
+	if(type.value==="share"){
+		storageClassifyList.value = storageClassifyList.value.map(item=>{
+			return {
+				...item,
+				picurl:item.smallPicurl.replace("_small.webp",".jpg")
+			}
+		})
+		curentImgInfo.value = storageClassifyList.value[0]
+	}
+	else{
+		storageClassifyList.value = uni.getStorageSync("storageClassifyList") || []
+		storageClassifyList.value = storageClassifyList.value.map(item=>{
+			return {
+				...item,
+				picurl:item.smallPicurl.replace("_small.webp",".jpg")
+			}
+		})
+		currentPicIndex.value = storageClassifyList.value.findIndex(item=>item._id===currentId.value)
+		readImgsIndex.value.push(
+			currentPicIndex.value===0? storageClassifyList.value.length:currentPicIndex.value-1,
+			currentPicIndex.value,
+			currentPicIndex.value===storageClassifyList.value.length? 0: currentPicIndex.value+1,
+		)
+		curentImgInfo.value = storageClassifyList.value[currentPicIndex.value]
+	}
 })
 
 
@@ -223,7 +247,14 @@ const maskChange = ()=>{
 
 
 //返回上一页
-const goBack= ()=>{
+const goBack= (e)=>{
+	console.log(e);
+	if(e=="share"){
+		uni.reLaunch({
+			url:"/pages/index/index"
+		})
+		return;
+	}
 	uni.navigateBack()
 }
 
@@ -234,12 +265,11 @@ const  swiperHandler = (e)=>{
 		currentPicIndex.value,
 		currentPicIndex.value===storageClassifyList.value.length? 0: currentPicIndex.value+1,)
 	readImgsIndex.value = Array.from(new Set(readImgsIndex.value))
-	
 	curentImgInfo.value = storageClassifyList.value[currentPicIndex.value]
 }
 
 	
-const downloadHandler = ()=>{
+const downloadHandler =async()=>{
 	// uni.saveImageToPhotosAlbum() H5不支持
 	// #ifdef H5
 	uni.showModal({
@@ -248,10 +278,15 @@ const downloadHandler = ()=>{
 	})
 	// #endif
 	// #ifndef H5
+	try{
 		uni.showLoading({
 			mask:true,
 			title:"下载中..."
 		})
+		
+		let {_id:wallId,classid} = curentImgInfo.value
+		const res = await getDownloadWall(classid,wallId)
+		
 		uni.getImageInfo({
 			src:curentImgInfo.value.picurl,
 			success:(res)=>{
@@ -306,12 +341,45 @@ const downloadHandler = ()=>{
 				})
 			}
 		})
+		}catch(err){
+			uni.hideLoading()
+		}
 	// #endif
 }
+
+
+
+
+	// 设置分享给朋友
+	// id=663b17a10d2b315faf724e40&title=可爱萌宠
+	onShareAppMessage((e)=>{
+		
+		return {
+			path:"/pages/preview/preview?id="+currentId.value+"&title="+title.value+"&type=share",
+			title:"dbb壁纸分类列表",
+		}
+	})
+	
+	// 设置分享到朋友圈
+	onShareTimeline(()=>{
+		return {
+			title:"dbb壁纸分类列表",
+			imageUrl:"/static/images/xxmLogo.png",
+			// 不用设置path
+			query:"id="+currentId.value+"&title="+title.value+"&type=share"
+		}
+	})
+
+
 </script>
 
 <style lang="scss" scoped>
+.uni-popup{
+	padding-bottom: 0 !important;
+}
 .preview{
+		
+
 	width: 100%;
 	height: 100vh;	
 	position: relative;

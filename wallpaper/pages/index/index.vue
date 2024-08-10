@@ -41,7 +41,7 @@
 			</common-title>
 			<view class="content">
 				<scroll-view scroll-x >
-					<view class="select-item" v-for="item in eachDayRecommendList" :key="item._id" @click="goPreview">
+					<view class="select-item" v-for="item in eachDayRecommendList" :key="item._id" @click="goPreview(item._id)">
 						<image mode="aspectFill" :src="item.smallPicurl" ></image>
 					</view>
 				</scroll-view>
@@ -71,6 +71,7 @@
 	
 	import { getBannerList,getEachDayRecommendList,getNoticeList,getSpecialSubjectList } from '../../service';
 	import {onMounted, ref} from "vue"
+	import {onShareAppMessage,onShareTimeline} from "@dcloudio/uni-app"
 	
 	const homeBannerList = ref([])
 	const eachDayRecommendList = ref([])
@@ -93,24 +94,45 @@
 		const res4 = await getSpecialSubjectList()
 		specialSubjectList.value = res4.data
 		
-		console.log(specialSubjectList.value);
 	})
 	
   const previewImageHandler = (index)=>{
 		console.log(index);
 	}
 	
-	const goPreview = ()=>{
+	const goPreview = (id)=>{
+		uni.setStorageSync("storageClassifyList",eachDayRecommendList.value)
 		uni.navigateTo({
-			url:"/pages/preview/preview"
+			url:"/pages/preview/preview?id="+id+"&title="+"每日精选"
 		})
+		
+		// id=663b17a10d2b315faf724e41&title=可爱萌宠
+		
 	}
 	
 	const goNotice = ()=>{
 		uni.navigateTo({
-			url:"/pages/notice/detail"
+			url:"/pages/notice/detail?id=index"
 		})
 	}
+	
+	
+	// 设置分享给朋友
+	onShareAppMessage((e)=>{
+		return {
+			path:"/pages/index/index",
+			title:"dbb壁纸首页",
+		}
+	})
+	
+	// 设置分享到朋友圈
+	onShareTimeline(()=>{
+		return {
+			title:"dbb壁纸首页",
+			imageUrl:"/static/images/xxmLogo.png",
+			path:"/pages/index/index",
+		}
+	})
 </script>
 
 <style scoped lang="less">

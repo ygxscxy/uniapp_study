@@ -19,6 +19,19 @@ const _sfc_main = {
       const res = await service_modules_home.getSpecialSubjectList(20);
       classifyList.value = res.data;
     });
+    common_vendor.onShareAppMessage((e) => {
+      return {
+        path: "/pages/classify/classify",
+        title: "dbb壁纸首页"
+      };
+    });
+    common_vendor.onShareTimeline(() => {
+      return {
+        title: "dbb壁纸首页",
+        imageUrl: "/static/images/xxmLogo.png",
+        path: "/pages/classify/classify"
+      };
+    });
     return (_ctx, _cache) => {
       return {
         a: common_vendor.p({
@@ -38,4 +51,5 @@ const _sfc_main = {
   }
 };
 const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__scopeId", "data-v-6bcfa975"]]);
+_sfc_main.__runtimeHooks = 6;
 wx.createPage(MiniProgramPage);

@@ -4,7 +4,7 @@
 			<view class="tag">
 				<uni-tag inverted text="置顶" type="error" />
 			</view>
-			<view class="font">这个区域填写标题</view>			
+			<view class="font">欢迎进入我使用uni-app开发的小程序-{{detail?.title}}</view>			
 		</view>
 		
 		<view class="info">
@@ -16,7 +16,11 @@
 		
 		
 		<view class="content">		
-			内容区域					
+			<view v-if="id=='index'">
+				<view>可以和我联系</view>
+				<image src="../../static/images/wx.jpg" mode="widthFix"></image>
+			</view>
+			<rich-text v-else :nodes="detail?.content"></rich-text>
 		</view>
 		
 		<view class="count">
@@ -26,7 +30,25 @@
 </template>
 
 <script setup>
+import { onMounted, ref } from 'vue';
+import { getNoticeDetail } from '../../service';
+import {onLoad} from "@dcloudio/uni-app"
 
+const detail = ref(null)
+
+const id = ref("")
+
+	
+onLoad((option)=>{
+	id.value = option?.id
+})
+	
+onMounted(async ()=>{
+	if(id.value){
+		const res = await getNoticeDetail(id.value)
+		detail.value = res.data
+	}
+})
 </script>
 
 <style lang="scss" scoped>

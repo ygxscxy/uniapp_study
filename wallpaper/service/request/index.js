@@ -10,6 +10,15 @@ export default function(config){
 			...config,
 			url:BASE_URL+url
 		}).then(res=>{
+			if(res.data.errCode==400){
+				uni.showModal({
+					title:"数据加载失败...",
+					content:res.data.errMsg,
+					showCancel:false
+				})
+				uni.hideLoading()
+			  return;
+			}
 			uni.hideLoading()
 			resolve(res)
 		}).catch(err=>{

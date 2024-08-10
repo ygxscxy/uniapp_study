@@ -34,6 +34,9 @@ view.data-v-2dad6c07, swiper.data-v-2dad6c07, swiper-item.data-v-2dad6c07, .bann
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
+.uni-popup.data-v-2dad6c07 {
+  padding-bottom: 0 !important;
+}
 .preview.data-v-2dad6c07 {
   width: 100%;
   height: 100vh;

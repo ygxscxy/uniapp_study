@@ -25,6 +25,5 @@ export const getSpecialSubjectList = async (pageSize=8)=>{
 	const res = await dbRequest({url:"/classify",data:{
 		pageSize
 	}})
-	console.log(res.data);
 	return res.data
 }

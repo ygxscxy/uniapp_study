@@ -1,34 +1,35 @@
 <template>
-	<view class="userLayout pageBg">
+	<view class="userLayout pageBg"  v-if="userinfo">
 		<view class="userInfo">
 			<view class="avatar">
 				<image src="../../static/images/xxmLogo.png" mode="aspectFill"></image>
 			</view>
-			<view class="ip">100.100.100.100</view>
-			<view class="address">来自于：山东</view>
+			<view class="ip">{{userinfo.IP}}</view>
+			<view class="address">来自于：{{userinfo.address.city||userinfo.address.province||userinfo.address.country}}</view>
 		</view>
 		
 		
 		<view class="section">
 			<view class="list">
-				<navigator url="/pages/classiylist/classiylist" class="row">
+				<navigator :url="`/pages/classiylist/classiylist?title=${'我的下载'}&type=${'download'}`" class="row">
 					<view class="left">
 						<uni-icons type="download-filled" size="20" ></uni-icons>
 						<view class="text">我的下载</view>
 					</view>
 					<view class="right">
-						<view class="text">33</view>
+						<view class="text">{{userinfo.downloadSize}}</view>
 						<uni-icons type="right" size="15" color="#aaa"></uni-icons>
 					</view>
 				</navigator>
 				
-				<navigator  url="/pages/classiylist/classiylist" class="row">
+				<!-- classid=65237031189f860b7613acf4&title=明星美女 -->
+				<navigator  :url="`/pages/classiylist/classiylist?title=${'我的评分'}&type=${'score'}`" class="row">
 					<view class="left">
 						<uni-icons type="star-filled" size="20"></uni-icons>
 						<view class="text">我的评分</view>
 					</view>
 					<view class="right">
-						<view class="text">33</view>
+						<view class="text">{{userinfo.scoreSize}}</view>
 						<uni-icons type="right" size="15" color="#aaa"></uni-icons>
 					</view>
 				</navigator>
@@ -56,10 +57,10 @@
 		
 		<view class="section">
 			<view class="list">
-				<view class="row">
+				<view class="row" @click="declaremHandler">
 					<view class="left">
 						<uni-icons type="notification-filled" size="20"></uni-icons>
-						<view class="text">订阅更新</view>
+						<view class="text">版权声明</view>
 					</view>
 					<view class="right">
 						<view class="text"></view>
@@ -67,7 +68,7 @@
 					</view>
 				</view>
 				
-				<view class="row">
+				<view class="row" @click="commonProblemHandler">
 					<view class="left">
 						<uni-icons type="flag-filled" size="20"></uni-icons>
 						<view class="text">常见问题</view>
@@ -84,11 +85,35 @@
 </template>
 
 <script setup>
+	
+	import {onLoad} from "@dcloudio/uni-app"
+	import { getUserInfo } from "../../service";
+	import { ref } from "vue";
 
+const userinfo = ref(null)
+
+	onLoad(()=>{
+		getUserInfo().then(res=>{
+			userinfo.value = res.data
+		})
+	})
 
 const clickContact = ()=>{
 	uni.makePhoneCall({
 		phoneNumber:"114"
+	})
+}
+
+
+const commonProblemHandler = async ()=>{
+	uni.navigateTo({
+		url:"/pages/notice/detail?id="+"6536358ce0ec19c8d67fbe82"
+	})
+}
+
+const declaremHandler = async ()=>{
+	uni.navigateTo({
+		url:"/pages/notice/detail?id="+"65360ea7bd0220d7635bd34b"
 	})
 }
 

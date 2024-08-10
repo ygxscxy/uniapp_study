@@ -1,5 +1,7 @@
 import { getClassifyDetailList } from "./modules/classify.js"
-import { setPreviewScore } from "./modules/preview.js"
+import { getNoticeDetail } from "./modules/notice.js"
+import { getUserInfo,getUserDownloadORScore} from "./modules/userinfo.js"
+import { setPreviewScore,getDownloadWall,getSimpleWallDetail } from "./modules/preview.js"
 import {getBannerList,getEachDayRecommendList,getNoticeList,getSpecialSubjectList} from "./modules/home.js"
 export {
 	getBannerList,
@@ -7,5 +9,9 @@ export {
 	getNoticeList,
 	getSpecialSubjectList,
 	getClassifyDetailList,
-	setPreviewScore
+	setPreviewScore,
+	getDownloadWall,
+	getUserInfo,
+	getUserDownloadORScore,
+	getNoticeDetail
 }
