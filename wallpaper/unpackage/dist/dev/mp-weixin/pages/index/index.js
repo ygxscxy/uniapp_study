@@ -29,6 +29,7 @@ const _sfc_main = {
     common_vendor.onMounted(async () => {
       const res = await service_modules_home.getBannerList();
       homeBannerList.value = res.data;
+      console.log(res.data);
       const res2 = await service_modules_home.getEachDayRecommendList();
       eachDayRecommendList.value = res2.data;
       const res3 = await service_modules_home.getNoticeList();
@@ -60,12 +61,41 @@ const _sfc_main = {
         path: "/pages/index/index"
       };
     });
+    const moreHandler = () => {
+      common_vendor.index.reLaunch({
+        url: "/pages/classify/classify"
+      });
+    };
+    const parseQuery = (query) => {
+      const parseRes = [];
+      const res = query.split("&");
+      res.forEach((item) => {
+        const [key, value] = item.split("=");
+        parseRes.push({ [key]: value });
+      });
+      return parseRes;
+    };
+    const bannerHandler = (item) => {
+      if (item.target === "miniProgram") {
+        common_vendor.index.navigateToMiniProgram({
+          appId: item.appid,
+          url: item.url
+        });
+      } else {
+        const parseRes = parseQuery(item.url);
+        console.log(parseRes);
+        common_vendor.index.navigateTo({
+          url: `/pages/classiylist/classiylist?classid=${parseRes[0]["id"]}&title=${parseRes[1]["name"]}`
+        });
+      }
+    };
     return (_ctx, _cache) => {
       return {
         a: common_vendor.f(homeBannerList.value, (item, k0, i0) => {
           return {
             a: item.picurl,
-            b: item._id
+            b: common_vendor.o(($event) => bannerHandler(item), item._id),
+            c: item._id
           };
         }),
         b: common_vendor.p({
@@ -101,7 +131,8 @@ const _sfc_main = {
             c: common_vendor.o(($event) => goPreview(item._id), item._id)
           };
         }),
-        i: common_vendor.f(specialSubjectList.value, (item, index, i0) => {
+        i: common_vendor.o(moreHandler),
+        j: common_vendor.f(specialSubjectList.value, (item, index, i0) => {
           return {
             a: item._id,
             b: "1cf27b2a-7-" + i0,
@@ -111,7 +142,7 @@ const _sfc_main = {
             })
           };
         }),
-        j: common_vendor.p({
+        k: common_vendor.p({
           isshowLast: true
         })
       };

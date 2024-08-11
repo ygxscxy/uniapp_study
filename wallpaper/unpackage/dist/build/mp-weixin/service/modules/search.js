@@ -1,0 +1,1 @@
+"use strict";const e=require("../request/index.js");exports.getSearchData=async function({keyword:a,pageNum:t=1,pageSize:r=12}){return(await e.dbRequest({url:"/searchWall",data:{keyword:a,pageNum:t,pageSize:r}})).data};

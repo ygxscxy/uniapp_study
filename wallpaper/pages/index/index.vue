@@ -4,7 +4,7 @@
 		<view class="banner">
 			<swiper :indicator-dots="true" :autoplay="true"
 				:interval="3000" :duration="1000" >
-				<swiper-item v-for="item in homeBannerList" :key="item._id">
+				<swiper-item @click="bannerHandler(item)" v-for="item in homeBannerList" :key="item._id">
 					<view class="swiper-item">
 						<image :src="item.picurl" mode="widthFix"></image>
 					</view>
@@ -53,7 +53,7 @@
 					<view>专题精选</view>
 				</template>
 				<template #custom>
-					<view class="text">
+					<view @click="moreHandler" class="text">
 						More+
 					</view>
 				</template>
@@ -83,7 +83,7 @@
 		// 获取banner数据
 		const res = await  getBannerList()
 		homeBannerList.value = res.data
-		
+		console.log(res.data);
 		// 获取每日精选数据
 		const res2 = await getEachDayRecommendList()
 		eachDayRecommendList.value = res2.data
@@ -133,6 +133,39 @@
 			path:"/pages/index/index",
 		}
 	})
+	
+	
+const moreHandler = ()=>{
+	uni.reLaunch({
+		url:"/pages/classify/classify"
+	})
+}	
+		
+		
+	const parseQuery = (query)=>{
+		const parseRes = []
+		const res = query.split("&")
+		res.forEach(item=>{
+			const [key,value] = item.split("=")
+			parseRes.push({[key]:value})
+		})
+		return parseRes
+	}
+	const bannerHandler = (item)=>{
+		if(item.target==="miniProgram"){
+			uni.navigateToMiniProgram({
+				appId:item.appid,
+				url:item.url
+			})
+		}else{
+			const parseRes = parseQuery(item.url)
+			console.log(parseRes);
+			uni.navigateTo({
+				url:`/pages/classiylist/classiylist?classid=${parseRes[0]["id"]}&title=${parseRes[1]["name"]}`
+			})
+		}
+	
+	}
 </script>
 
 <style scoped lang="less">

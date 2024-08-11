@@ -1,0 +1,1 @@
+"use strict";exports.timeAgo=function(t){const e=Date.now()-new Date(t).getTime(),o=6e4,r=36e5,n=864e5,a=30*n;return e<o?"1分钟":e<r?Math.floor(e/o)+"分钟":e<n?Math.floor(e/r)+"小时":e<a?Math.floor(e/n)+"天":e<31104e6?Math.floor(e/a)+"个月":null};

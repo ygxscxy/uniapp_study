@@ -1,0 +1,1 @@
+import{T as t}from"./index-Dun_VNWR.js";const n=t(),e=()=>n.statusBarHeight||15,i=()=>{if(uni.getMenuButtonBoundingClientRect){let{top:t,height:n}=uni.getMenuButtonBoundingClientRect();return n+2*(t-e())}return 40},u=()=>e()+i(),o=()=>0;export{i as a,o as b,u as c,e as g};

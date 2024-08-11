@@ -1,0 +1,1 @@
+"use strict";const e=require("../request/index.js");exports.getClassifyDetailList=async function({classid:a,pageNum:s=1,pageSize:t=12}){return(await e.dbRequest({url:"/wallList",data:{classid:a,pageNum:s,pageSize:t}})).data};

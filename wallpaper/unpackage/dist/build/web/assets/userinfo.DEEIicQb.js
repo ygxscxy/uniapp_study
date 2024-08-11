@@ -1,0 +1,1 @@
+import{d as a}from"./index.BjfZrZzs.js";async function e(){return(await a({url:"/userInfo"})).data}async function t({type:e,pageNum:t=1,pageSize:r=9}){return(await a({url:"/userWallList",data:{type:e,pageNum:t,pageSize:r}})).data}export{t as a,e as g};

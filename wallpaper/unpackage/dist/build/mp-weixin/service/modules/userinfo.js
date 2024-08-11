@@ -1,0 +1,1 @@
+"use strict";const e=require("../request/index.js");exports.getUserDownloadORScore=async function({type:t,pageNum:a=1,pageSize:r=9}){return(await e.dbRequest({url:"/userWallList",data:{type:t,pageNum:a,pageSize:r}})).data},exports.getUserInfo=async function(){return(await e.dbRequest({url:"/userInfo"})).data};
